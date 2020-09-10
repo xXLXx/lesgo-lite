@@ -33,6 +33,8 @@ provider:
     PRODUCT: ${self:service}
     STAGE: ${self:provider.stage}
     datadog: monitored
+    service: ${env:APP_NAME}
+    env: ${self:provider.stage}
 
 custom:
   path:

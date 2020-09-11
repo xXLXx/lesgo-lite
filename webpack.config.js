@@ -12,7 +12,7 @@ module.exports = {
   },
   devtool: 'cheap-module-source-map',
   mode:
-    ['local', 'development'].indexOf(process.env.APP_ENV) !== -1
+    ['local', 'dev'].indexOf(process.env.APP_ENV) !== -1
       ? 'development'
       : 'production',
   target: 'node',

@@ -19,7 +19,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/, // include .js files
+        test: /\.ts$/, // include .ts files
         enforce: 'pre', // preload the jshint loader
         exclude: /node_modules/, // exclude any and all files in the node_modules folder
         include: __dirname,
@@ -33,49 +33,30 @@ module.exports = {
   },
   externals: [{ 'aws-sdk': 'commonjs aws-sdk' }],
   resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
     plugins: [
       new AliasPlugin(
         'described-resolve',
         [
           {
             name: 'Config',
-            alias: [
-              path.resolve(__dirname, 'src/config/'),
-              path.resolve(__dirname, '../lesgo-framework/src/config/'),
-              path.resolve(__dirname, 'node_modules/lesgo/src/config/'),
-            ],
-          },
-          {
-            name: 'Constants',
-            alias: [
-              path.resolve(__dirname, 'src/constants/'),
-              path.resolve(__dirname, '../lesgo-framework/src/constants/'),
-              path.resolve(__dirname, 'node_modules/lesgo/src/constants/'),
-            ],
+            alias: [path.resolve(__dirname, 'src/config/')],
           },
           {
             name: 'Core',
-            alias: [
-              path.resolve(__dirname, 'src/core/'),
-              path.resolve(__dirname, '../lesgo-framework/src/core/'),
-              path.resolve(__dirname, 'node_modules/lesgo/src/core/'),
-            ],
+            alias: [path.resolve(__dirname, 'src/core/')],
           },
           {
             name: 'Exceptions',
             alias: [
               path.resolve(__dirname, 'src/exceptions/'),
-              path.resolve(__dirname, '../lesgo-framework/src/exceptions/'),
-              path.resolve(__dirname, 'node_modules/lesgo/src/exceptions/'),
+              path.resolve(__dirname, '../lesgo-framework/src/exceptions'),
+              path.resolve(__dirname, 'node_modules/lesgo/src/exceptions'),
             ],
           },
           {
             name: 'Handlers',
-            alias: [
-              path.resolve(__dirname, 'src/handlers/'),
-              path.resolve(__dirname, '../lesgo-framework/src/handlers/'),
-              path.resolve(__dirname, 'node_modules/lesgo/src/handlers/'),
-            ],
+            alias: [path.resolve(__dirname, 'src/handlers/')],
           },
           {
             name: 'Middlewares',
@@ -84,6 +65,10 @@ module.exports = {
               path.resolve(__dirname, '../lesgo-framework/src/middlewares'),
               path.resolve(__dirname, 'node_modules/lesgo/src/middlewares'),
             ],
+          },
+          {
+            name: 'Models',
+            alias: [path.resolve(__dirname, 'src/models/')],
           },
           {
             name: 'Services',

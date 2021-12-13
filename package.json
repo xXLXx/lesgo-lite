@@ -33,6 +33,7 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-typescript": "^7.12.16",
     "@babel/register": "^7.12.1",
+    "@types/lesgo": "^0.6.0",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "@typescript-eslint/parser": "^4.17.0",
     "aws-sdk": "^2.529.0",

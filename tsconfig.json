@@ -7,33 +7,29 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "Config/*": [
-        "src/config/*"
-      ],
-      "Core/*": [
-        "src/core/*"
-      ],
+      "Config/*": ["src/config/*"],
+      "Core/*": ["src/core/*"],
       "Exceptions/*": [
         "src/exceptions/*",
-        "node_modules/lesgo/src/exceptions/*"
+        "node_modules/lesgo/src/exceptions/*",
+        "node_modules/@types/lesgo/exceptions/*"
       ],
-      "Handlers/*": [
-        "src/handlers/*"
-      ],
+      "Handlers/*": ["src/handlers/*"],
       "Middlewares/*": [
         "src/middlewares/*",
-        "node_modules/lesgo/src/middlewares/*"
+        "node_modules/lesgo/src/middlewares/*",
+        "node_modules/@types/lesgo/middlewares/*"
       ],
-      "Models/*": [
-        "src/models/*"
-      ],
+      "Models/*": ["src/models/*"],
       "Services/*": [
         "src/services/*",
-        "node_modules/lesgo/src/services/*"
+        "node_modules/lesgo/src/services/*",
+        "node_modules/@types/lesgo/services/*"
       ],
       "Utils/*": [
         "src/utils/*",
-        "node_modules/lesgo/src/utils/*"
+        "node_modules/lesgo/src/utils/*",
+        "node_modules/@types/lesgo/utils/*"
       ]
     },
     "preserveConstEnums": true,
@@ -42,14 +38,8 @@
     "allowJs": true,
     "outDir": ".build",
     "moduleResolution": "node",
-    "lib": [
-      "es2018"
-    ],
-    "rootDir": "./",
+    "lib": ["es2018"],
+    "rootDir": "./"
   },
-  "exclude": [
-    "node_modules",
-    "tests",
-    "coverage",
-  ]
+  "exclude": ["node_modules", "tests", "coverage"]
 }

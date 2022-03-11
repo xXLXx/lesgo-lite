@@ -5,15 +5,26 @@ plugins:
   - serverless-offline
   - serverless-plugin-log-retention
   - serverless-dotenv-plugin
+  #
+  # Uncomment below to enable nested stacks on CloudFormation
+  # See https://reflex-media.github.io/lesgo-docs/0.7.7/prologue/release-notes/#cloudformation-nested-stack-support
+  #
+  # - serverless-plugin-split-stacks
+  #
+  # Uncomment below to slow down deployment process.
+  # See https://reflex-media.github.io/lesgo-docs/0.7.7/prologue/release-notes/#chaining-deployment
+  #
+  # - serverless-dependson-plugin
 
 package:
   individually: true
 
 provider:
   name: aws
+  architecture: arm64
   runtime: nodejs12.x
-  memorySize: ${env:AWS_LAMBDA_MEMORY_SIZE}
-  timeout: ${env:AWS_LAMBDA_TIMEOUT}
+  memorySize: 128
+  timeout: 5
   stackName: ${self:service}-${self:provider.stage}
   apiName: ${self:provider.stackName}
   stage: ${opt:stage, 'local'}
@@ -21,14 +32,8 @@ provider:
   region: ${opt:region, env:AWS_ACCOUNT_REGION}
   apiGateway:
     shouldStartNameWithService: true
-    minimumCompressionSize: ${env:AWS_APIGATEWAY_MIN_COMPRESSION_SIZE, 100}
-  # httpApi:
-  #   authorizers:
-  #     cognitoJWTAuthorizer:
-  #       identitySource: $request.header.Authorization
-  #       issuerUrl: https://cognito-idp.${self:provider.region}.amazonaws.com/${env:AWS_COGNITO_USER_POOL_ID}
-  #       audience:
-  #         - ${env:AWS_COGNITO_CLIENT_ID}
+    minimumCompressionSize: 100
+  httpApi:
     cors: true
   vpc:
     securityGroupIds:
@@ -45,37 +50,14 @@ provider:
     datadog: monitored
     service: ${env:APP_NAME}
     env: ${self:provider.stage}
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - lambda:InvokeFunction
-      Resource: '*'
-    - Effect: 'Allow'
-      Action:
-        - 'sqs:SendMessage'
-        - 'sqs:ReceiveMessage'
-        - 'sqs:DeleteMessage'
-      Resource: 'arn:aws:sqs:${self:provider.region}:*:*'
-    - Effect: 'Allow'
-      Action:
-        - 'secretsmanager:GetSecretValue'
-      Resource:
-        - ${env:DB_SECRET_ARN}
-        - ${env:DB_SECRET_COMMAND_ARN}
-    - Effect: 'Allow'
-      Action:
-        - 'rds-data:ExecuteStatement'
-        - 'rds-data:BatchExecuteStatement'
-      Resource: ${env:DB_RESOURCE_ARN}
-    - Effect: 'Allow'
-      Action:
-        - 'dynamodb:Query'
-        - 'dynamodb:GetItem'
-        - 'dynamodb:PutItem'
-        - 'dynamodb:UpdateItem'
-        - 'dynamodb:BatchWriteItem'
-        - 'dynamodb:BatchGetItem'
-      Resource: 'arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.stackName}-*'
+  #
+  # Add additional permission for your app here
+  #
+  # iamRoleStatements:
+  #   - Effect: Allow
+  #     Action:
+  #       - lambda:InvokeFunction
+  #     Resource: '*'
 
 custom:
   path:
@@ -85,14 +67,31 @@ custom:
   serverless-offline:
     port: 8888
     ignoreJWTSignature: true
-  logRetentionInDays: ${env:AWS_LOG_RETENTION_DAYS, 7}
+  logRetentionInDays: 7
   dotenv:
     basePath: config/environments/
+  #
+  # Config for serverless-plugin-split-stacks
+  #
+  # splitStacks:
+  #   perFunction: false
+  #   perType: true
+  #   perGroupFunction: false
+  #
+  # Config for serverless-dependson-plugin
+  #
+  # dependsOn:
+  #   enabled: true
+  #   chains: 15
 
-# Add all the functions here
+#
+# Add functions here
+#
 functions:
   - ${file(${self:custom.path.functions}/utils.yml)}
 
-# Add all the additional resources here
+#
+# Add resources here
+#
 resources:
   # - ${file(${self:custom.path.resources}/sample-resource.yml)}

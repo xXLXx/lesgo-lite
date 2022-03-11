@@ -35,14 +35,17 @@ provider:
     minimumCompressionSize: 100
   httpApi:
     cors: true
-  vpc:
-    securityGroupIds:
-      - ${env:AWS_VPC_SECURITY_GROUP_ID}
-    subnetIds:
-      - ${env:AWS_VPC_SUBNET_1_ID}
-      - ${env:AWS_VPC_SUBNET_2_ID}
-      - ${env:AWS_VPC_SUBNET_3_ID}
-      - ${env:AWS_VPC_SUBNET_4_ID}
+  #
+  # Uncomment to deploy app within a VPC
+  #
+  # vpc:
+  #   securityGroupIds:
+  #     - ${env:AWS_VPC_SECURITY_GROUP_ID}
+  #   subnetIds:
+  #     - ${env:AWS_VPC_SUBNET_1_ID}
+  #     - ${env:AWS_VPC_SUBNET_2_ID}
+  #     - ${env:AWS_VPC_SUBNET_3_ID}
+  #     - ${env:AWS_VPC_SUBNET_4_ID}
   stackTags:
     SITE: ${self:service}
     PRODUCT: ${self:service}

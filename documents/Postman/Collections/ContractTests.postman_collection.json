@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "74d8ebd7-4129-4880-986f-dfff3a6f8a10",
+		"name": "ContractTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Utils",
+			"item": [
+				{
+					"name": "Ping Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var resJson = pm.response.json();",
+									"var resStatus = resJson.status;",
+									"var resData = resJson.data;",
+									"",
+									"pm.test(\"Response should be OK\", function () {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.json;",
+									"",
+									"    pm.expect(resStatus).to.eql(\"success\");",
+									"});",
+									"",
+									"pm.test('Response schema is valid', function () {",
+									"    var schema = {",
+									"        \"type\": \"object\",",
+									"        \"properties\": {",
+									"            \"status\": { \"type\": \"string\" },",
+									"            \"data\": {",
+									"                \"type\": \"object\",",
+									"                \"properties\": {",
+									"                    \"message\": { \"type\": \"string\" },",
+									"                },",
+									"                \"required\": [\"message\"]",
+									"            },",
+									"            \"_meta\": { \"type\": \"object\" },",
+									"        },",
+									"        \"required\": [\"status\", \"data\"]",
+									"    };",
+									"",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"pm.test('Response data is valid', function () {",
+									"    pm.expect(resData.message).to.eql(\"Pong\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{version}}/utils/ping",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{version}}",
+								"utils",
+								"ping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ping Error Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var resJson = pm.response.json();",
+									"var resStatus = resJson.status;",
+									"var resError = resJson.error;",
+									"",
+									"pm.test(\"Response should be error\", function () {",
+									"    pm.response.to.be.badRequest;",
+									"    pm.response.to.have.status(400);",
+									"    pm.response.to.be.json;",
+									"",
+									"    pm.expect(resStatus).to.eql(\"error\");",
+									"});",
+									"",
+									"pm.test('Response schema is valid', function () {",
+									"    var schema = {",
+									"        \"type\": \"object\",",
+									"        \"properties\": {",
+									"            \"status\": { \"type\": \"string\" },",
+									"            \"data\": { \"type\": \"null\" },",
+									"            \"error\": {",
+									"                \"type\": \"object\",",
+									"                \"properties\": {",
+									"                    \"code\": { \"type\": \"string\" },",
+									"                    \"message\": { \"type\": \"string\" },",
+									"                    \"details\": {",
+									"                        \"type\": \"object\",",
+									"                        \"properties\": {",
+									"                            \"validated\": {",
+									"                                \"type\": \"object\",",
+									"                                \"properties\": {",
+									"                                    \"sample-error\": { \"type\": \"string\" }",
+									"                                },",
+									"                                \"required\": [\"sample-error\"]",
+									"                            },",
+									"                        },",
+									"                        \"required\": [\"validated\"]",
+									"                    },",
+									"                },",
+									"                \"required\": [\"code\", \"message\", \"details\"]",
+									"            }",
+									"        },",
+									"        \"required\": [\"status\", \"data\", \"error\"]",
+									"    };",
+									"",
+									"    pm.response.to.have.jsonSchema(schema);",
+									"});",
+									"",
+									"pm.test('Response data is valid', function () {",
+									"    pm.expect(resError.code).to.eql(\"Core/utils/ping::SAMPLE_ERROR\");",
+									"    pm.expect(resError.message).to.eql(\"ErrorException: Error exception\");",
+									"    pm.expect(resError.details.validated).to.have.property('sample-error', 'someError');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{version}}/utils/ping?sample-error=someError",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{version}}",
+								"utils",
+								"ping"
+							],
+							"query": [
+								{
+									"key": "sample-error",
+									"value": "someError"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

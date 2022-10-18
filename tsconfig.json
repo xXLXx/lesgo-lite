@@ -35,11 +35,11 @@
     "preserveConstEnums": true,
     "strictNullChecks": true,
     "sourceMap": true,
-    "allowJs": true,
+    "allowJs": false,
     "outDir": ".build",
     "moduleResolution": "node",
     "lib": ["es2018"],
     "rootDir": "./"
   },
-  "exclude": ["node_modules", "tests", "coverage"]
+  "exclude": ["node_modules", "dist", "config", "coverage", "**/*.spec.ts"]
 }

@@ -31,7 +31,7 @@ module.exports = {
       },
     ],
   },
-  externals: [{ 'aws-sdk': 'commonjs aws-sdk' }],
+  externals: [{ 'aws-sdk': 'commonjs aws-sdk' }, 'cardinal'],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     plugins: [
@@ -50,7 +50,6 @@ module.exports = {
             name: 'Exceptions',
             alias: [
               path.resolve(__dirname, 'src/exceptions/'),
-              path.resolve(__dirname, '../lesgo-framework/src/exceptions'),
               path.resolve(__dirname, 'node_modules/lesgo/src/exceptions'),
             ],
           },
@@ -62,7 +61,6 @@ module.exports = {
             name: 'Middlewares',
             alias: [
               path.resolve(__dirname, 'src/middlewares/'),
-              path.resolve(__dirname, '../lesgo-framework/src/middlewares'),
               path.resolve(__dirname, 'node_modules/lesgo/src/middlewares'),
             ],
           },
@@ -74,7 +72,6 @@ module.exports = {
             name: 'Services',
             alias: [
               path.resolve(__dirname, 'src/services/'),
-              path.resolve(__dirname, '../lesgo-framework/src/services/'),
               path.resolve(__dirname, 'node_modules/lesgo/src/services/'),
             ],
           },
@@ -82,7 +79,6 @@ module.exports = {
             name: 'Utils',
             alias: [
               path.resolve(__dirname, 'src/utils/'),
-              path.resolve(__dirname, '../lesgo-framework/src/utils/'),
               path.resolve(__dirname, 'node_modules/lesgo/src/utils/'),
             ],
           },

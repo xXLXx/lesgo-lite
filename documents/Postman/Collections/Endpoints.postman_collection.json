@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "8d363edf-4624-40b9-b772-ffc92ef799d1",
+		"name": "Endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "utils",
+			"item": [
+				{
+					"name": "ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{version}}/utils/ping",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{version}}",
+								"utils",
+								"ping"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ping Test",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/{{version}}/utils/ping",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{version}}",
+										"utils",
+										"ping"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "content-length",
+									"value": "989"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 14 Mar 2022 08:07:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"message\": \"Pong\"\n    },\n    \"_meta\": {\n        \"version\": \"2.0\",\n        \"routeKey\": \"GET /v1/utils/ping\",\n        \"rawPath\": \"/v1/utils/ping\",\n        \"rawQueryString\": \"\",\n        \"cookies\": [],\n        \"headers\": {\n            \"User-Agent\": \"PostmanRuntime/7.29.0\",\n            \"Accept\": \"*/*\",\n            \"Cache-Control\": \"no-cache\",\n            \"Postman-Token\": \"87a447cd-2699-4d15-8c63-19fa78178d4a\",\n            \"Host\": \"localhost:3000\",\n            \"Accept-Encoding\": \"gzip, deflate, br\",\n            \"Connection\": \"keep-alive\"\n        },\n        \"queryStringParameters\": null,\n        \"requestContext\": {\n            \"accountId\": \"offlineContext_accountId\",\n            \"apiId\": \"offlineContext_apiId\",\n            \"authorizer\": {\n                \"jwt\": {}\n            },\n            \"domainName\": \"offlineContext_domainName\",\n            \"domainPrefix\": \"offlineContext_domainPrefix\",\n            \"http\": {\n                \"method\": \"GET\",\n                \"path\": \"/v1/utils/ping\",\n                \"protocol\": \"HTTP/1.1\",\n                \"sourceIp\": \"127.0.0.1\",\n                \"userAgent\": \"PostmanRuntime/7.29.0\"\n            },\n            \"requestId\": \"offlineContext_resourceId\",\n            \"routeKey\": \"GET /v1/utils/ping\",\n            \"stage\": \"$default\",\n            \"time\": \"14/Mar/2022:16:07:40 +0800\",\n            \"timeEpoch\": 1647245260876\n        },\n        \"body\": null,\n        \"pathParameters\": null,\n        \"isBase64Encoded\": false,\n        \"input\": null,\n        \"auth\": {}\n    }\n}"
+						},
+						{
+							"name": "Ping Error Test",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/{{version}}/utils/ping?sample-error=someError",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"{{version}}",
+										"utils",
+										"ping"
+									],
+									"query": [
+										{
+											"key": "sample-error",
+											"value": "someError"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,accept-encoding"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 14 Mar 2022 08:08:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"data\": null,\n    \"error\": {\n        \"code\": \"Core/utils/ping::SAMPLE_ERROR\",\n        \"message\": \"ErrorException: Error exception\",\n        \"details\": {\n            \"validated\": {\n                \"sample-error\": \"someError\"\n            }\n        }\n    },\n    \"_meta\": {\n        \"version\": \"2.0\",\n        \"routeKey\": \"GET /v1/utils/ping\",\n        \"rawPath\": \"/v1/utils/ping\",\n        \"rawQueryString\": \"sample-error=someError\",\n        \"cookies\": [],\n        \"headers\": {\n            \"User-Agent\": \"PostmanRuntime/7.29.0\",\n            \"Accept\": \"*/*\",\n            \"Cache-Control\": \"no-cache\",\n            \"Postman-Token\": \"6233b624-7ae5-46bf-97b0-3f34b9a3a5e9\",\n            \"Host\": \"localhost:3000\",\n            \"Accept-Encoding\": \"gzip, deflate, br\",\n            \"Connection\": \"keep-alive\"\n        },\n        \"queryStringParameters\": {\n            \"sample-error\": \"someError\"\n        },\n        \"requestContext\": {\n            \"accountId\": \"offlineContext_accountId\",\n            \"apiId\": \"offlineContext_apiId\",\n            \"authorizer\": {\n                \"jwt\": {}\n            },\n            \"domainName\": \"offlineContext_domainName\",\n            \"domainPrefix\": \"offlineContext_domainPrefix\",\n            \"http\": {\n                \"method\": \"GET\",\n                \"path\": \"/v1/utils/ping\",\n                \"protocol\": \"HTTP/1.1\",\n                \"sourceIp\": \"127.0.0.1\",\n                \"userAgent\": \"PostmanRuntime/7.29.0\"\n            },\n            \"requestId\": \"offlineContext_resourceId\",\n            \"routeKey\": \"GET /v1/utils/ping\",\n            \"stage\": \"$default\",\n            \"time\": \"14/Mar/2022:16:08:04 +0800\",\n            \"timeEpoch\": 1647245284360\n        },\n        \"body\": null,\n        \"pathParameters\": null,\n        \"isBase64Encoded\": false,\n        \"input\": {\n            \"sample-error\": \"someError\"\n        },\n        \"auth\": {}\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -4,7 +4,9 @@ const FILE = 'Core/utils/ping';
 
 describe('test Core/utils/ping', () => {
   it('should return Pong by default', () => {
-    return expect(ping()).resolves.toBe('Pong');
+    return expect(ping()).resolves.toMatchObject({
+      message: 'Pong',
+    });
   });
 
   it('should return Pong with authSub when present', () => {
@@ -14,17 +16,24 @@ describe('test Core/utils/ping', () => {
     });
   });
 
+  it('should return error with invalid input', () => {
+    return expect(ping({}, 123)).rejects.toHaveProperty(
+      'code',
+      `${FILE}::INVALID_INPUT`
+    );
+  });
+
   it('should return error with sample error input', () => {
     return expect(ping({ 'sample-error': 'exception' })).rejects.toHaveProperty(
       'code',
-      `${FILE}::ERROR_SAMPLE`
+      `${FILE}::SAMPLE_ERROR`
     );
   });
 
   it('should return error with unknown input', () => {
-    return expect(ping({ invalid: 'invalid' })).rejects.toHaveProperty(
+    return expect(ping({ invalidTest: 'invalid' })).rejects.toHaveProperty(
       'code',
-      `${FILE}::ERROR_UNKNOWN_PARAMETER`
+      `${FILE}::INVALID_PARAMETERS`
     );
   });
 });

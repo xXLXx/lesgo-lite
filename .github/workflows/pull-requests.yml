@@ -1,10 +1,9 @@
-name: Continuous Integration
+name: Pull Requests (CI)
 
 on:
   pull_request:
     branches:
-      - 'feature/**'
-      - 'develop'
+      - '**'
 
 jobs:
   test:
@@ -22,9 +21,16 @@ jobs:
 
       - name: NPM Install
         run: npm ci
-      
+
       - name: Lint check
         run: npm run lint
-      
-      - name: Jest test run
+
+      - name: Test run with coverage check
         run: npm run coverage
+
+      - name: Upload code coverage report
+        uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: coverage
+          path: coverage

@@ -27,6 +27,10 @@ module.exports = {
       '<rootDir>/src/exceptions$1',
       '<rootDir>/node_modules/lesgo/src/exceptions$1',
     ],
+    '^Middlewares/errorHttpResponseMiddleware$':
+      '<rootDir>/tests/__mocks__/middlewares/errorHttpResponseMiddleware.ts',
+    '^Middlewares/normalizeHttpRequestMiddleware$':
+      '<rootDir>/tests/__mocks__/middlewares/normalizeHttpRequestMiddleware.ts',
     '^Middlewares(.*)$': '<rootDir>/src/middlewares$1',
     '^Models(.*)$': '<rootDir>/src/models$1',
     '^Services(.*)$': [
@@ -46,7 +50,7 @@ module.exports = {
     [
       './node_modules/jest-html-reporter',
       {
-        pageTitle: 'Soda API Test Report',
+        pageTitle: 'Lesgo Lite Test Report',
         outputPath: 'coverage/test-report/index.html',
       },
     ],

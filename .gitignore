@@ -27,3 +27,8 @@ yarn-error.log
 
 # log files
 logs/*.log
+
+# IDE-specific directoris/files
+.idea/
+
+.DS_Store

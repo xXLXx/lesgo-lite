@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@middy/core": "^1.4.0",
-    "lesgo": "github:reflex-media/lesgo-framework#release/v0.7.8"
+    "lesgo": "reflex-media/lesgo-framework#release/v0.7.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",

@@ -1,6 +1,6 @@
 {
   "name": "lesgo-lite",
-  "version": "0.7.8",
+  "version": "1.0.0",
   "description": "An even lighter Node.js template for a simple REST API microservice project using the Serverless Framework",
   "scripts": {
     "start": "tsc && sls offline start --stage local --env local --skipCacheInvalidation --noAuth",
